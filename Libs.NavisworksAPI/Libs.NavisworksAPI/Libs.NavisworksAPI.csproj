@@ -177,8 +177,4 @@
 
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="_Viewpoint\" />
-  </ItemGroup>
-
 </Project>
