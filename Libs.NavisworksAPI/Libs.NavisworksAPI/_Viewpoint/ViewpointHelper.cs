@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Libs.NavisworksAPI._Viewpoint
 {
-    public class ViewpointUtils
+    public class ViewpointHelper
     {
         public static List<SavedViewpoint> GetAllViewpoints(GroupViewpoint root)
         {
