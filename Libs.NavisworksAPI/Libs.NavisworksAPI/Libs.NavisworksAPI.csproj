@@ -49,6 +49,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="AdWindows" Condition="'$(Configuration)' == 'N2018' ">
       <HintPath>$(SolutionDir)References\2018\AdWindows.dll</HintPath>
       <Private>False</Private>
@@ -175,6 +179,10 @@
       <Private>False</Private>
     </Reference>
 
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="_Visibility\" />
   </ItemGroup>
 
 </Project>
