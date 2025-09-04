@@ -19,7 +19,14 @@ namespace Libs.NavisworksAPI._Viewpoint
             var root = new GroupViewpoint("Saved Viewpoints", null);
             foreach (var savedItem in doc.SavedViewpoints.Value)
             {
-                if (savedItem is GroupItem group) root.Groups.Add(GetGroupViewpoint(group));
+                if (savedItem is GroupItem group)
+                {
+                    var groupViewpoint = GetGroupViewpoint(group);
+                    if (groupViewpoint.Groups.Count > 0 || groupViewpoint.Viewpoints.Count > 0)
+                    {
+                        root.Groups.Add(groupViewpoint);
+                    }
+                }
                 else if (savedItem is SavedViewpoint viewpoint) root.Viewpoints.Add(new SelectViewpoint(viewpoint));
             }
             return root;
@@ -27,13 +34,20 @@ namespace Libs.NavisworksAPI._Viewpoint
 
         private static GroupViewpoint GetGroupViewpoint(GroupItem groupItem)
         {
-            var groupViewpoint = new GroupViewpoint(groupItem.DisplayName, groupItem);
+            var group = new GroupViewpoint(groupItem.DisplayName, groupItem);
             foreach (var savedItem in groupItem.Children)
             {
-                if (savedItem is GroupItem gr) groupViewpoint.Groups.Add(GetGroupViewpoint(gr));
-                else if (savedItem is SavedViewpoint vp) groupViewpoint.Viewpoints.Add(new SelectViewpoint(vp));
+                if (savedItem is GroupItem gr)
+                {
+                    var subGroup = GetGroupViewpoint(gr);
+                    if (subGroup.Groups.Count > 0 || subGroup.Viewpoints.Count > 0)
+                    {
+                        group.Groups.Add(subGroup);
+                    }
+                }
+                else if (savedItem is SavedViewpoint vp) group.Viewpoints.Add(new SelectViewpoint(vp));
             }
-            return groupViewpoint;
+            return group;
         }
     }
 }
