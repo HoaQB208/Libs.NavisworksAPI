@@ -18,7 +18,7 @@ namespace Libs.NavisworksAPI._Viewpoint.Class
         }
 
         // IsExpanded
-        private bool _IsExpanded = false;
+        private bool _IsExpanded = true;
         public bool IsExpanded
         {
             get { return _IsExpanded; }
